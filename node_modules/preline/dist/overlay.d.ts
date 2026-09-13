@@ -1,0 +1,110 @@
+export interface IOverlayOptions {
+	hiddenClass?: string | null;
+	emulateScrollbarSpace?: boolean;
+	isClosePrev?: boolean;
+	backdropClasses?: string | null;
+	backdropParent?: string | HTMLElement | Document;
+	backdropExtraClasses?: string | null;
+	moveOverlayToBody?: number | null;
+	isToggleClassesImmediately?: boolean;
+}
+export interface IOverlay {
+	options?: IOverlayOptions;
+	open(cb: Function | null): void;
+	close(forceClose: boolean, cb: Function | null): void;
+	destroy(): void;
+}
+export type TOverlayOptionsAutoCloseEqualityType = "less-than" | "more-than";
+export interface ICollectionItem<T> {
+	id: string | number;
+	element: T;
+}
+export interface IBasePlugin<O, E> {
+	el: E;
+	options?: O;
+	events?: {};
+}
+declare class HSBasePlugin<O, E = HTMLElement> implements IBasePlugin<O, E> {
+	el: E;
+	options: O;
+	events?: any;
+	constructor(el: E, options: O, events?: any);
+	createCollection(collection: any[] | undefined, element: any): void;
+	fireEvent(evt: string, payload?: any): any;
+	on(evt: string, cb: Function): void;
+}
+declare class HSOverlay extends HSBasePlugin<{}> implements IOverlay {
+	private accessibilityComponent;
+	private lastFocusedToggle;
+	private initiallyOpened;
+	private readonly hiddenClass;
+	private readonly emulateScrollbarSpace;
+	private readonly isClosePrev;
+	private readonly backdropClasses;
+	private readonly backdropParent;
+	private readonly backdropExtraClasses;
+	private readonly animationTarget;
+	private readonly isScrollInsideViewport;
+	private onScrollInsideViewportClickListener;
+	private openNextOverlay;
+	private autoHide;
+	private toggleButtons;
+	toggleMinifierButtons: HTMLElement[];
+	static openedItemsQty: number;
+	initContainer: HTMLElement | null;
+	isCloseWhenClickInside: boolean;
+	isTabAccessibilityLimited: boolean;
+	isLayoutAffect: boolean;
+	hasAutofocus: boolean;
+	hasDynamicZIndex: boolean;
+	hasAbilityToCloseOnBackdropClick: boolean;
+	openedBreakpoint: number | null;
+	autoClose: number | null;
+	autoCloseEqualityType: TOverlayOptionsAutoCloseEqualityType | null;
+	moveOverlayToBody: number | null;
+	isToggleClassesImmediately: boolean;
+	private backdrop;
+	private initialZIndex;
+	static currentZIndex: number;
+	private onElementClickListener;
+	private onElementMinifierClickListener;
+	private onOverlayClickListener;
+	private onBackdropClickListener;
+	constructor(el: HTMLElement, options?: IOverlayOptions, events?: {});
+	private elementClick;
+	private elementMinifierClick;
+	minify(isMinified: boolean, cb?: Function | null): void;
+	private overlayClick;
+	private backdropClick;
+	private init;
+	private buildToggleButtons;
+	private buildToggleMinifierButtons;
+	private hideAuto;
+	private checkTimer;
+	private buildBackdrop;
+	private destroyBackdrop;
+	private focusElement;
+	private getBodyCurrentScrollbarSize;
+	private collectToggleParameters;
+	private isElementVisible;
+	private isOpened;
+	open(cb?: Function | null): any;
+	close(forceClose?: boolean, cb?: Function | null): Promise<unknown>;
+	updateToggles(): void;
+	destroy(): void;
+	private static findInCollection;
+	static getInstance(target: HTMLElement | string, isInstance?: boolean): any;
+	static autoInit(): void;
+	static open(target: HSOverlay | HTMLElement | string): void;
+	static close(target: HSOverlay | HTMLElement | string): void;
+	static minify(target: HSOverlay | HTMLElement | string, isMinified: boolean): void;
+	static setOpened(breakpoint: number, el: ICollectionItem<HSOverlay>): void;
+	private setupAccessibility;
+	static on(evt: string, target: HSOverlay | HTMLElement | string, cb: Function): void;
+}
+
+export {
+	HSOverlay as default,
+};
+
+export {};

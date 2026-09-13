@@ -1,0 +1,53 @@
+export interface ICopyMarkupOptions {
+	targetSelector: string;
+	wrapperSelector: string;
+	limit?: number;
+}
+export interface ICopyMarkup {
+	options?: ICopyMarkupOptions;
+	delete(target: HTMLElement): void;
+	destroy(): void;
+}
+export interface IBasePlugin<O, E> {
+	el: E;
+	options?: O;
+	events?: {};
+}
+declare class HSBasePlugin<O, E = HTMLElement> implements IBasePlugin<O, E> {
+	el: E;
+	options: O;
+	events?: any;
+	constructor(el: E, options: O, events?: any);
+	createCollection(collection: any[] | undefined, element: any): void;
+	fireEvent(evt: string, payload?: any): any;
+	on(evt: string, cb: Function): void;
+}
+declare class HSCopyMarkup extends HSBasePlugin<ICopyMarkupOptions> implements ICopyMarkup {
+	private readonly targetSelector;
+	private readonly wrapperSelector;
+	private readonly limit;
+	private target;
+	private wrapper;
+	private items;
+	private onElementClickListener;
+	private onDeleteItemButtonClickListener;
+	constructor(el: HTMLElement, options?: ICopyMarkupOptions);
+	private elementClick;
+	private deleteItemButtonClick;
+	private init;
+	private copy;
+	private addPredefinedItems;
+	private setTarget;
+	private setWrapper;
+	private addToItems;
+	delete(target: HTMLElement): void;
+	destroy(): void;
+	static getInstance(target: HTMLElement | string, isInstance?: boolean): any;
+	static autoInit(): void;
+}
+
+export {
+	HSCopyMarkup as default,
+};
+
+export {};

@@ -1,0 +1,57 @@
+import { DropzoneOptions } from 'dropzone';
+
+export interface IFileUploadOptions extends DropzoneOptions {
+	extensions?: {};
+	autoHideTrigger?: boolean;
+	singleton?: boolean;
+}
+export interface IFileUpload {
+	options?: IFileUploadOptions;
+	destroy(): void;
+}
+export interface IBasePlugin<O, E> {
+	el: E;
+	options?: O;
+	events?: {};
+}
+declare class HSBasePlugin<O, E = HTMLElement> implements IBasePlugin<O, E> {
+	el: E;
+	options: O;
+	events?: any;
+	constructor(el: E, options: O, events?: any);
+	createCollection(collection: any[] | undefined, element: any): void;
+	fireEvent(evt: string, payload?: any): any;
+	on(evt: string, cb: Function): void;
+}
+declare class HSFileUpload extends HSBasePlugin<IFileUploadOptions> implements IFileUpload {
+	private concatOptions;
+	private previewTemplate;
+	private extensions;
+	private singleton;
+	dropzone: Dropzone | null;
+	private onReloadButtonClickListener;
+	private onTempFileInputChangeListener;
+	constructor(el: HTMLElement, options?: IFileUploadOptions, events?: {});
+	private tempFileInputChange;
+	private reloadButtonClick;
+	private init;
+	private initDropzone;
+	destroy(): void;
+	private onAddFile;
+	private previewAccepted;
+	private onRemoveFile;
+	private onUploadProgress;
+	private onComplete;
+	private setIcon;
+	private createIcon;
+	private formatFileSize;
+	private splitFileName;
+	static getInstance(target: HTMLElement | string, isInstance?: boolean): any;
+	static autoInit(): void;
+}
+
+export {
+	HSFileUpload as default,
+};
+
+export {};
