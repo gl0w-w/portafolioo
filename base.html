@@ -14,36 +14,22 @@
 </head>
 
 <body class="bg-[#121212] text-white antialiased">
-  <div id="loader"
-    class="fixed inset-0 z-[999] flex items-center justify-center bg-[#121212] transition-opacity duration-700">
-    <div class="w-12 h-12 border-4 border-gray-800 border-t-white rounded-full animate-spin"></div>
-  </div>
+
   <main>
-    {% include 'components/header.html' %} {% include
-    'components/section-inicio.html' %} {% include
-    'components/section-about.html' %} {% include 'components/tech&leng.html'
-    %} {% include 'components/cards.html' %} {% include 'components/contacto.html' %} {% include
-    'components/footer.html' %}
+    {% include 'components/header.html' %}
+    {% include 'components/section-inicio.html' %}
+    {% include 'components/section-about.html' %}
+    {% include 'components/tech&leng.html' %}
+    {% include 'components/cards.html' %}
+    {% include 'components/contacto.html' %}
+    {% include 'components/footer.html' %}
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const hideLoader = () => {
-      const loader = document.getElementById('loader');
-      if (loader) {
-        loader.classList.add('opacity-0');
-        setTimeout(() => loader.remove(), 500);
-      }
-    };
-
-    document.addEventListener('DOMContentLoaded', hideLoader);
-    window.addEventListener('load', hideLoader);
-
-    setTimeout(hideLoader, 1500);
-
     AOS.init({
-      duration: 1200,
+      duration: 1000,
       once: true,
     });
   </script>
