@@ -1,42 +1,50 @@
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gl0wxyz | Portafolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
-      rel="stylesheet"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
-    />
-  </head>
-  <body class="bg-[#121212] text-white antialiased">
-    <div data-aos="fade-down"></div>
-    <main>
-      {% include 'components/header.html' %} {% include
-      'components/section-inicio.html' %} {% include
-      'components/section-about.html' %} {% include 'components/tech&leng.html'
-      %} {% include 'components/cards.html' %} {% include
-      'components/footer.html' %}
-    </main>
+<html lang="es" class="scroll-smooth">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 1200,
-        once: true,
-      });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gl0wxyz | Portafolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="/public/icons/gl0w.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+</head>
+
+<body class="bg-[#121212] text-white antialiased">
+  <div id="loader"
+    class="fixed inset-0 z-[999] flex items-center justify-center bg-[#121212] transition-opacity duration-700">
+    <div class="w-12 h-12 border-4 border-gray-800 border-t-white rounded-full animate-spin"></div>
+  </div>
+  <main>
+    {% include 'components/header.html' %} {% include
+    'components/section-inicio.html' %} {% include
+    'components/section-about.html' %} {% include 'components/tech&leng.html'
+    %} {% include 'components/cards.html' %} {% include 'components/contacto.html' %} {% include
+    'components/footer.html' %}
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.classList.add('opacity-0');
+      setTimeout(() => loader.remove(), 700);
+    });
+
+    AOS.init({
+      duration: 1200,
+      once: true,
+    });
+  </script>
+</body>
+
+</html>
+</body>
+
 </html>
